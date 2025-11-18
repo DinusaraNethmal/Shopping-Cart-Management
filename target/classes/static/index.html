@@ -12,31 +12,11 @@
 <div class="container">
     <div class="card">
         <h2>Available Products</h2>
+        
         <div id="product-list">
-            <div class="product">
-                <div>
-                    <strong>FC Barcelona Home Jersey</strong><br>
-                    <small>$120.00 | Size: M</small>
-                </div>
-                <button class="btn-add" onclick="addToCart(101, 'FC Barcelona Home Jersey', 120.00, 'Size: M')">Add to Cart</button>
-            </div>
-
-            <div class="product">
-                <div>
-                    <strong>Lionel Messi Poster</strong><br>
-                    <small>$25.00 | Size: A1</small>
-                </div>
-                <button class="btn-add" onclick="addToCart(102, 'Lionel Messi Poster', 25.00, 'Size: A1')">Add to Cart</button>
-            </div>
-
-            <div class="product">
-                <div>
-                    <strong>Deep Learning Textbook</strong><br>
-                    <small>$85.00 | Hardcover</small>
-                </div>
-                <button class="btn-add" onclick="addToCart(103, 'Deep Learning Textbook', 85.00, 'Hardcover')">Add to Cart</button>
-            </div>
+            <p style="text-align:center; color:#666;">Loading products from database...</p>
         </div>
+
     </div>
 
     <div class="card">
@@ -44,6 +24,8 @@
         <ul id="cart-items">
             </ul>
         <div class="total-box">Total: $<span id="cart-total">0.00</span></div>
+        
+        <button onclick="proceedToCheckout()" style="margin-top:10px; background:#28a745; color:white; border:none; padding:10px 20px; cursor:pointer; font-size:1.1em;">Proceed to Checkout</button>
         <button onclick="clearCart()" style="margin-top:10px; background:#666; color:white; border:none; padding:5px 10px; cursor:pointer;">Empty Cart</button>
     </div>
 </div>
