@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Add Product</title>
+    <link rel="stylesheet" href="css/style.css"> <link rel="stylesheet" href="css/admin.css"> </head>
+<body>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Back to Shop</a>
+    
+    <div class="admin-container">
+        <h2 style="text-align:center;">Add New Product</h2>
+        
+        <form id="add-product-form" onsubmit="addProduct(event)">
+            <div class="form-group">
+                <label>Product Name</label>
+                <input type="text" id="p-name" required placeholder="e.g., Gaming Laptop">
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="p-desc" rows="3" placeholder="Product details..."></textarea>
+            </div>
+
+            <div class="form-group" style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                <div>
+                    <label>Price ($)</label>
+                    <input type="number" id="p-price" step="0.01" required placeholder="0.00">
+                </div>
+                <div>
+                    <label>Stock Quantity</label>
+                    <input type="number" id="p-stock" required placeholder="100">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>SKU (Unique Code)</label>
+                <input type="text" id="p-sku" required placeholder="PROD-001">
+            </div>
+
+            <div class="form-group">
+                <label>Image URL</label>
+                <input type="text" id="p-image" placeholder="http://...">
+                <img id="img-preview" class="preview-img" alt="Preview">
+            </div>
+
+            <button type="submit" class="btn-submit">Add Product</button>
+        </form>
+    </div>
+</div>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>

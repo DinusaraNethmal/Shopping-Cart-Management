@@ -1,0 +1,62 @@
+/* Specific styles for Order History */
+.order-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.order-header {
+    background: #f8f9fa;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-status {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+/* Status Colors */
+.status-PENDING { background: #fff3cd; color: #856404; }
+.status-CONFIRMED { background: #cce5ff; color: #004085; }
+.status-SHIPPED { background: #d4edda; color: #155724; }
+.status-DELIVERED { background: #d4edda; color: #155724; }
+
+.order-body { 
+    padding: 15px; 
+}
+
+.order-item-list { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.order-item:last-child { 
+    border-bottom: none; 
+}
+
+.back-link { 
+    display: inline-block; 
+    margin-bottom: 20px; 
+    color: #007bff; 
+    text-decoration: none; 
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

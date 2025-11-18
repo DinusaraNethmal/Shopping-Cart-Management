@@ -1,0 +1,7 @@
+.admin-container { max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 15px; }
+label { display: block; margin-bottom: 5px; font-weight: bold; }
+input, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+.btn-submit { width: 100%; padding: 12px; background: #28a745; color: white; border: none; cursor: pointer; font-size: 16px; border-radius: 4px; }
+.btn-submit:hover { background: #218838; }
+.preview-img { max-width: 100px; margin-top: 10px; display: none; border: 1px solid #ddd; }

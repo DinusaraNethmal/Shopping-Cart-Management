@@ -22,4 +22,8 @@ public class ProductService {
     }
     
     // (Optional) Member 2 would also have addProduct, updateProduct, deleteProduct here
+    // Save a new product to the database
+    public Product addProduct(Product product) {
+        return productRepository.save(product);
+    }
 }
