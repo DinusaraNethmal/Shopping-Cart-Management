@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart Manager</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }
+        .container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        /* Card Styles */
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2 { border-bottom: 2px solid #eee; padding-bottom: 10px; color: #333; }
+        
+        /* Product List */
+        .product { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .btn-add { background-color: #007bff; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; }
+        .btn-add:hover { background-color: #0056b3; }
+
+        /* Cart List */
+        #cart-items { list-style: none; padding: 0; }
+        .cart-item { background: #fff; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .btn-remove { background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-left: 10px; }
+        .total-box { font-size: 1.2em; font-weight: bold; text-align: right; margin-top: 20px; color: #28a745; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>Available Products</h2>
+        <div id="product-list">
+            <div class="product">
+                <div>
+                    <strong>FC Barcelona Home Jersey</strong><br>
+                    <small>$120.00 | Size: M</small>
+                </div>
+                <button class="btn-add" onclick="addToCart(101, 'FC Barcelona Home Jersey', 120.00, 'Size: M')">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <div>
+                    <strong>Lionel Messi Poster</strong><br>
+                    <small>$25.00 | Size: A1</small>
+                </div>
+                <button class="btn-add" onclick="addToCart(102, 'Lionel Messi Poster', 25.00, 'Size: A1')">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <div>
+                    <strong>Deep Learning Textbook</strong><br>
+                    <small>$85.00 | Hardcover</small>
+                </div>
+                <button class="btn-add" onclick="addToCart(103, 'Deep Learning Textbook', 85.00, 'Hardcover')">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Your Shopping Cart</h2>
+        <ul id="cart-items">
+            </ul>
+        <div class="total-box">Total: $<span id="cart-total">0.00</span></div>
+        <button onclick="clearCart()" style="margin-top:10px; background:#666; color:white; border:none; padding:5px 10px; cursor:pointer;">Empty Cart</button>
+    </div>
+</div>
+
+<script>
+    // Generate a random session token for the guest user
+    let sessionToken = localStorage.getItem('sessionToken');
+    if (!sessionToken) {
+        sessionToken = 'guest-' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('sessionToken', sessionToken);
+    }
+
+    const API_URL = 'http://localhost:8080/api/cart';
+
+    // 1. LOAD CART
+    async function loadCart() {
+        try {
+            const response = await fetch(`${API_URL}/view?sessionToken=${sessionToken}`);
+            const cart = await response.json();
+            renderCart(cart);
+        } catch (error) {
+            console.error('Error loading cart:', error);
+        }
+    }
+
+    // 2. RENDER CART TO HTML
+    function renderCart(cart) {
+        const list = document.getElementById('cart-items');
+        const totalSpan = document.getElementById('cart-total');
+        list.innerHTML = '';
+        
+        if (cart && cart.items) {
+            cart.items.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'cart-item';
+                li.innerHTML = `
+                    <div>
+                        <strong>${item.productName}</strong> <br>
+                        <small>${item.variant}</small>
+                    </div>
+                    <div>
+                        $${item.price} x ${item.quantity}
+                        <button class="btn-remove" onclick="removeItem(${item.itemId})">Remove</button>
+                    </div>
+                `;
+                list.appendChild(li);
+            });
+            totalSpan.textContent = cart.totalPrice.toFixed(2);
+        } else {
+            totalSpan.textContent = '0.00';
+        }
+    }
+
+    // 3. ADD TO CART FUNCTION
+    async function addToCart(pId, pName, price, variant) {
+        const formData = new FormData();
+        formData.append('sessionToken', sessionToken);
+        formData.append('productId', pId);
+        formData.append('productName', pName);
+        formData.append('quantity', 1);
+        formData.append('price', price);
+        formData.append('variant', variant);
+
+        await fetch(`${API_URL}/add`, { method: 'POST', body: formData });
+        loadCart(); // Refresh the list
+    }
+
+    // 4. REMOVE ITEM FUNCTION
+    async function removeItem(itemId) {
+        await fetch(`${API_URL}/remove/${itemId}?sessionToken=${sessionToken}`, { method: 'DELETE' });
+        loadCart();
+    }
+
+    // 5. CLEAR CART FUNCTION
+    async function clearCart() {
+        await fetch(`${API_URL}/clear?sessionToken=${sessionToken}`, { method: 'DELETE' });
+        loadCart();
+    }
+
+    // Load cart on page load
+    loadCart();
+</script>
+
+</body>
+</html>
