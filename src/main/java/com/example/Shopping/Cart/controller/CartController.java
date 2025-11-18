@@ -52,4 +52,13 @@ public class CartController {
         cartService.clearCart(userId, sessionToken);
         return "Cart cleared successfully";
     }
+
+    // 5. Update Quantity (PUT http://localhost:8080/api/cart/update/1?quantity=3)
+@PutMapping("/update/{itemId}")
+public Cart updateQuantity(@RequestParam(required = false) Long userId,
+                           @RequestParam(required = false) String sessionToken,
+                           @PathVariable Long itemId,
+                           @RequestParam int quantity) {
+    return cartService.updateQuantity(userId, sessionToken, itemId, quantity);
+    }
 }

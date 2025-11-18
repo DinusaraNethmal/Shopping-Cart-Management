@@ -109,4 +109,25 @@ public class CartService {
         cart.setTotalPrice(total);
         return cartRepository.save(cart);
     }
+    // 5. Update Quantity (The 'U' in CRUD)
+public Cart updateQuantity(Long userId, String sessionToken, Long itemId, int newQuantity) {
+    Cart cart = getCart(userId, sessionToken);
+    Optional<CartItem> itemOpt = cartItemRepository.findById(itemId);
+
+    if (itemOpt.isPresent()) {
+        CartItem item = itemOpt.get();
+        // Security check: make sure this item belongs to this cart
+        if (item.getCart().getCartId().equals(cart.getCartId())) {
+            if (newQuantity <= 0) {
+                // If quantity is 0 or less, just remove it
+                cart.getItems().remove(item);
+                cartItemRepository.delete(item);
+            } else {
+                item.setQuantity(newQuantity);
+                cartItemRepository.save(item);
+            }
+        }
+    }
+    return updateCartTotal(cart);
+}
 }
