@@ -1,6 +1,7 @@
-package com.example.Shopping.Cart.model; // Change 'ecommerce' to match your project package name
+package com.example.Shopping.Cart.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore; // <--- 1. ADD THIS IMPORT
 import java.math.BigDecimal;
 
 @Entity
@@ -12,13 +13,14 @@ public class CartItem {
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
+    @JsonIgnore  // <--- 2. ADD THIS LINE. This stops the infinite loop!
     private Cart cart;
 
     private Long productId;
     private String productName;
     private int quantity;
     private BigDecimal price;
-    private String variant; // e.g., "Size: M"
+    private String variant;
 
     // --- Getters and Setters ---
     public Long getItemId() { return itemId; }
