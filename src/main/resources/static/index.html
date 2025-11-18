@@ -4,29 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart Manager</title>
-    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <div class="container">
     <div class="card">
-        <h2>Available Products</h2>
-        
-        <div id="product-list">
-            <p style="text-align:center; color:#666;">Loading products from database...</p>
-        </div>
-
+        <h3>Categories</h3>
+        <ul id="category-list">
+            <li onclick="filterProducts('all')">All Products</li>
+            <li style="text-align:center; color:#999;">Loading...</li>
+        </ul>
     </div>
 
-    <div class="card">
-        <h2>Your Shopping Cart</h2>
-        <ul id="cart-items">
-            </ul>
-        <div class="total-box">Total: $<span id="cart-total">0.00</span></div>
+    <div class="content-area">
         
-        <button onclick="proceedToCheckout()" style="margin-top:10px; background:#28a745; color:white; border:none; padding:10px 20px; cursor:pointer; font-size:1.1em;">Proceed to Checkout</button>
-        <button onclick="clearCart()" style="margin-top:10px; background:#666; color:white; border:none; padding:5px 10px; cursor:pointer;">Empty Cart</button>
+        <div class="card">
+            <h2>Available Products</h2>
+            <div id="product-list">
+                <p style="text-align:center; color:#666;">Loading products...</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Your Cart</h2>
+            <ul id="cart-items"></ul>
+            <div class="total-box">Total: $<span id="cart-total">0.00</span></div>
+            
+            <button onclick="proceedToCheckout()" style="margin-top:10px; background:#28a745; color:white; border:none; padding:10px 20px; cursor:pointer; font-size:1.1em; width:100%;">Checkout</button>
+            <button onclick="clearCart()" style="margin-top:10px; background:#666; color:white; border:none; padding:5px 10px; cursor:pointer; width:100%;">Empty Cart</button>
+        </div>
     </div>
 </div>
 

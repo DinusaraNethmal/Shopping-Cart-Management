@@ -15,6 +15,7 @@ public class Cart {
     private Long userId; // Can be null for guests
     private String sessionToken;
     private BigDecimal totalPrice;
+    private String appliedCoupon;
 
     // This links the Cart to the CartItems
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -35,4 +36,7 @@ public class Cart {
 
     public List<CartItem> getItems() { return items; }
     public void setItems(List<CartItem> items) { this.items = items; }
+
+    public String getAppliedCoupon() { return appliedCoupon; }
+    public void setAppliedCoupon(String appliedCoupon) { this.appliedCoupon = appliedCoupon; }
 }

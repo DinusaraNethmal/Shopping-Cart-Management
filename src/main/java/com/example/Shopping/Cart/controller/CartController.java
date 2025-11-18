@@ -61,4 +61,12 @@ public Cart updateQuantity(@RequestParam(required = false) Long userId,
                            @RequestParam int quantity) {
     return cartService.updateQuantity(userId, sessionToken, itemId, quantity);
     }
+    
+    // 6. Apply Coupon (POST /api/cart/apply-coupon?code=SAVE10)
+    @PostMapping("/apply-coupon")
+    public Cart applyCoupon(@RequestParam(required = false) Long userId,
+                            @RequestParam(required = false) String sessionToken,
+                            @RequestParam String code) {
+        return cartService.applyCoupon(userId, sessionToken, code);
+    }
 }

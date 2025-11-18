@@ -83,3 +83,41 @@ h2 {
     margin-top: 20px; 
     color: #28a745; 
 }
+
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }
+
+/* MAIN LAYOUT: Sidebar (200px) | Content (Rest) */
+.container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: grid; 
+    grid-template-columns: 200px 1fr; /* Sidebar | Main Content */
+    gap: 20px; 
+}
+
+/* THE RIGHT SIDE: Products (Left) | Cart (Right) */
+.content-area {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Products take more space than Cart */
+    gap: 20px;
+}
+
+/* Card Styles */
+.card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+h2, h3 { border-bottom: 2px solid #eee; padding-bottom: 10px; color: #333; margin-top: 0; }
+
+/* Sidebar Menu */
+#category-list { list-style: none; padding: 0; }
+#category-list li { padding: 8px 5px; cursor: pointer; border-bottom: 1px solid #eee; color: #555; }
+#category-list li:hover { background-color: #f0f0f0; color: #007bff; font-weight: bold; }
+
+/* Product List */
+.product { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
+.btn-add { background-color: #007bff; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; }
+.btn-add:hover { background-color: #0056b3; }
+
+/* Cart List */
+#cart-items { list-style: none; padding: 0; }
+.cart-item { background: #fff; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+.btn-remove { background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-left: 10px; }
+.total-box { font-size: 1.2em; font-weight: bold; text-align: right; margin-top: 20px; color: #28a745; }

@@ -17,6 +17,10 @@ public class Product {
     private String imageUrl;
     private String sku;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     // --- Getters and Setters ---
     public Long getProductId() { return productId; }
     public void setProductId(Long productId) { this.productId = productId; }
@@ -38,4 +42,7 @@ public class Product {
 
     public String getSku() { return sku; }
     public void setSku(String sku) { this.sku = sku; }
+
+    public Category getCategory() { return category; }
+    public void setCategory(Category category) { this.category = category; }
 }

@@ -130,4 +130,33 @@ public Cart updateQuantity(Long userId, String sessionToken, Long itemId, int ne
     }
     return updateCartTotal(cart);
 }
+@Autowired
+    private com.example.Shopping.Cart.repository.CouponRepository couponRepository; // Add this injection
+
+    // 6. Apply Coupon Logic (FIXED)
+    public Cart applyCoupon(Long userId, String sessionToken, String couponCode) {
+        Cart cart = getCart(userId, sessionToken);
+
+        // CHECK 1: Is a coupon already applied?
+        if (cart.getAppliedCoupon() != null) {
+            throw new RuntimeException("A coupon is already applied to this cart!");
+        }
+
+        com.example.Shopping.Cart.model.Coupon coupon = couponRepository.findByCode(couponCode);
+
+        // CHECK 2: Is the coupon valid?
+        if (coupon == null || !coupon.isActive()) {
+            throw new RuntimeException("Invalid Coupon Code");
+        }
+
+        // Calculate Discount
+        BigDecimal discountFactor = coupon.getDiscountPercent().divide(new BigDecimal(100));
+        BigDecimal discountAmount = cart.getTotalPrice().multiply(discountFactor);
+        BigDecimal newTotal = cart.getTotalPrice().subtract(discountAmount);
+
+        cart.setTotalPrice(newTotal);
+        cart.setAppliedCoupon(couponCode); // SAVE THE CODE SO WE REMEMBER IT!
+        
+        return cartRepository.save(cart);
+    }
 }
