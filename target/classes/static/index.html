@@ -3,39 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart Manager</title>
+    <title>Shop - E-Commerce</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="container">
-    <div class="card">
-        <h3>Categories</h3>
-        <ul id="category-list">
-            <li onclick="filterProducts('all')">All Products</li>
-            <li style="text-align:center; color:#999;">Loading...</li>
-        </ul>
-    </div>
-
-    <div class="content-area">
+    <header class="header">
+        <a href="index.html" class="logo">MyShop</a>
         
-        <div class="card">
-            <h2>Available Products</h2>
-            <div id="product-list">
-                <p style="text-align:center; color:#666;">Loading products...</p>
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" placeholder="Search in MyShop...">
+            <button id="search-button" class="search-button">Search</button>
+        </div>
+        
+        <div class="user-actions" id="nav-buttons">
             </div>
-        </div>
+    </header>
 
-        <div class="card">
-            <h2>Your Cart</h2>
-            <ul id="cart-items"></ul>
-            <div class="total-box">Total: $<span id="cart-total">0.00</span></div>
-            
-            <button onclick="proceedToCheckout()" style="margin-top:10px; background:#28a745; color:white; border:none; padding:10px 20px; cursor:pointer; font-size:1.1em; width:100%;">Checkout</button>
-            <button onclick="clearCart()" style="margin-top:10px; background:#666; color:white; border:none; padding:5px 10px; cursor:pointer; width:100%;">Empty Cart</button>
-        </div>
+    <div class="main-content">
+        <aside class="sidebar card">
+            <h3>Categories</h3>
+            <ul id="category-list">
+                <li onclick="filterProducts('all')" class="active">All Products</li>
+                <li style="text-align:center; color:#999; margin-top:10px;">Loading...</li>
+            </ul>
+        </aside>
+
+        <section class="product-grid-container">
+            <h2>Available Products</h2>
+            <div id="product-list" class="product-grid">
+                <p style="text-align:center; color:#666; width:100%;">Loading products...</p>
+            </div>
+        </section>
     </div>
-</div>
 
 <script src="js/script.js"></script>
 

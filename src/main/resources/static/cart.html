@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart - E-Commerce</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Center the cart for better look */
+        .cart-container { max-width: 800px; margin: 0 auto; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #007bff; text-decoration: none; font-weight: bold;}
+    </style>
+</head>
+<body>
+
+<div class="cart-container">
+    <br>
+    <a href="index.html" class="back-link">← Continue Shopping</a>
+
+    <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding-bottom:10px; margin-bottom:20px;">
+            <h2 style="border:none; margin:0; padding:0;">Your Shopping Cart</h2>
+            <div id="nav-buttons"></div> </div>
+
+        <ul id="cart-items">
+            </ul>
+
+        <div class="total-box">Total: $<span id="cart-total">0.00</span></div>
+        
+        <div style="margin-top:20px; display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+            <button onclick="clearCart()" style="background:#666; color:white; border:none; padding:15px; cursor:pointer; border-radius:4px;">Empty Cart</button>
+            <button onclick="proceedToCheckout()" style="background:#28a745; color:white; border:none; padding:15px; cursor:pointer; font-size:1.1em; border-radius:4px;">Proceed to Checkout</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

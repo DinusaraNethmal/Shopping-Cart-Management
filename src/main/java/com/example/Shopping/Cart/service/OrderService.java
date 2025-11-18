@@ -17,7 +17,10 @@ public class OrderService {
     @Autowired
     private CartService cartService;
 
-    @Transactional // This ensures that if saving the order fails, the cart won't be cleared!
+    @Autowired
+    private com.example.Shopping.Cart.repository.ProductRepository productRepository; // Add this!
+
+    @Transactional
     public Order placeOrder(Long userId) {
         // 1. Get the User's Cart
         Cart cart = cartService.getCart(userId, null);
@@ -30,12 +33,26 @@ public class OrderService {
         Order order = new Order();
         order.setUserId(userId);
         order.setTotalAmount(cart.getTotalPrice());
-        order.setStatus(OrderStatus.PENDING); // Default status
+        order.setStatus(OrderStatus.PENDING);
 
-        // 3. Move items from Cart to Order
+        // 3. Move items from Cart to Order AND UPDATE INVENTORY
         for (CartItem cartItem : cart.getItems()) {
+            // A. Fetch the real product from DB to check stock
+            Product product = productRepository.findById(cartItem.getProductId())
+                    .orElseThrow(() -> new RuntimeException("Product not found"));
+
+            // B. Check if we have enough stock
+            if (product.getStockQuantity() < cartItem.getQuantity()) {
+                throw new RuntimeException("Not enough stock for product: " + product.getName());
+            }
+
+            // C. Reduce the stock
+            product.setStockQuantity(product.getStockQuantity() - cartItem.getQuantity());
+            productRepository.save(product); // Save the new stock level
+
+            // D. Create Order Item
             OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order); // Link to the main order
+            orderItem.setOrder(order);
             orderItem.setProductId(cartItem.getProductId());
             orderItem.setProductName(cartItem.getProductName());
             orderItem.setQuantity(cartItem.getQuantity());
@@ -44,10 +61,10 @@ public class OrderService {
             order.getItems().add(orderItem);
         }
 
-        // 4. Save the Order to Database
+        // 4. Save the Order
         Order savedOrder = orderRepository.save(order);
 
-        // 5. CLEAR THE CART (Because they just bought it!)
+        // 5. Clear the Cart
         cartService.clearCart(userId, null);
 
         return savedOrder;
@@ -56,5 +73,24 @@ public class OrderService {
     // Helper to see past orders
     public List<Order> getUserOrders(Long userId) {
         return orderRepository.findByUserId(userId);
+    }
+
+    // 1. Get ALL orders (For Admin)
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
+    }
+
+    // 2. Update Order Status
+    public Order updateOrderStatus(Long orderId, OrderStatus newStatus) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+        
+        order.setStatus(newStatus);
+        return orderRepository.save(order);
+    }
+
+    // 3. Delete Order
+    public void deleteOrder(Long orderId) {
+        orderRepository.deleteById(orderId);
     }
 }

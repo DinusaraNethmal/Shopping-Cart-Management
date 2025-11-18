@@ -2,6 +2,7 @@ package com.example.Shopping.Cart.service;
 
 import com.example.Shopping.Cart.model.Cart;
 import com.example.Shopping.Cart.model.CartItem;
+import com.example.Shopping.Cart.model.Product;
 import com.example.Shopping.Cart.repository.CartRepository;
 import com.example.Shopping.Cart.repository.CartItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class CartService {
 
     @Autowired
     private CartItemRepository cartItemRepository;
+
+    @Autowired
+    private com.example.Shopping.Cart.repository.ProductRepository productRepository; // Add this!
 
     // 1. Get or Create a Cart (for both Guests and Users)
     public Cart getCart(Long userId, String sessionToken) {
@@ -47,6 +51,13 @@ public class CartService {
 
     // 2. Add Item to Cart
     public Cart addToCart(Long userId, String sessionToken, Long productId, String productName, int quantity, BigDecimal price, String variant) {
+        // --- NEW STOCK CHECK ---
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+        
+        if (product.getStockQuantity() < quantity) {
+            throw new RuntimeException("Out of Stock! Only " + product.getStockQuantity() + " left.");
+        }
         Cart cart = getCart(userId, sessionToken);
         
         // Check if item already exists in cart

@@ -14,11 +14,13 @@ public class Product {
     private String description;
     private BigDecimal price;
     private int stockQuantity;
-    private String imageUrl;
     private String sku;
 
+    @Column(name = "image_url") // Correct: Use @Column for simple text
+    private String imageUrl;
+
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id") // Correct: Use @JoinColumn for relationships
     private Category category;
 
     // --- Getters and Setters ---
@@ -37,11 +39,11 @@ public class Product {
     public int getStockQuantity() { return stockQuantity; }
     public void setStockQuantity(int stockQuantity) { this.stockQuantity = stockQuantity; }
 
-    public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
-
     public String getSku() { return sku; }
     public void setSku(String sku) { this.sku = sku; }
+
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 
     public Category getCategory() { return category; }
     public void setCategory(Category category) { this.category = category; }
