@@ -1,7 +1,7 @@
 package com.example.Shopping.Cart.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore; // <--- 1. ADD THIS IMPORT
 import java.math.BigDecimal;
 
 @Entity
@@ -13,10 +13,18 @@ public class CartItem {
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
-    @JsonIgnore  // <--- 2. ADD THIS LINE. This stops the infinite loop!
+    @JsonIgnore
     private Cart cart;
 
+    // --- THIS WAS LIKELY MISSING ANNOTATIONS ---
+    @ManyToOne 
+    @JoinColumn(name = "product_id", insertable = false, updatable = false) 
+    private Product product;
+    // -------------------------------------------
+
+    @Column(name = "product_id")
     private Long productId;
+
     private String productName;
     private int quantity;
     private BigDecimal price;
@@ -28,6 +36,9 @@ public class CartItem {
 
     public Cart getCart() { return cart; }
     public void setCart(Cart cart) { this.cart = cart; }
+
+    public Product getProduct() { return product; }
+    public void setProduct(Product product) { this.product = product; }
 
     public Long getProductId() { return productId; }
     public void setProductId(Long productId) { this.productId = productId; }

@@ -3,36 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cart - E-Commerce</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Center the cart for better look */
-        .cart-container { max-width: 800px; margin: 0 auto; }
-        .back-link { display: inline-block; margin-bottom: 20px; color: #007bff; text-decoration: none; font-weight: bold;}
-    </style>
-</head>
+    <title>My Cart</title>
+    <link rel="stylesheet" href="css/style.css"> <link rel="stylesheet" href="css/cart.css">  </head>
 <body>
 
-<div class="cart-container">
-    <br>
-    <a href="index.html" class="back-link">← Continue Shopping</a>
+    <header class="header">
+        <a href="index.html" class="logo">MyShop</a>
+        <div class="user-actions" id="nav-buttons"></div>
+    </header>
 
-    <div class="card">
-        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding-bottom:10px; margin-bottom:20px;">
-            <h2 style="border:none; margin:0; padding:0;">Your Shopping Cart</h2>
-            <div id="nav-buttons"></div> </div>
-
-        <ul id="cart-items">
-            </ul>
-
-        <div class="total-box">Total: $<span id="cart-total">0.00</span></div>
+    <div class="cart-wrapper">
         
-        <div style="margin-top:20px; display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
-            <button onclick="clearCart()" style="background:#666; color:white; border:none; padding:15px; cursor:pointer; border-radius:4px;">Empty Cart</button>
-            <button onclick="proceedToCheckout()" style="background:#28a745; color:white; border:none; padding:15px; cursor:pointer; font-size:1.1em; border-radius:4px;">Proceed to Checkout</button>
+        <div class="cart-list-section">
+            <h2>Your Shopping Cart</h2>
+            <div id="cart-content-area">
+                <ul id="cart-items"></ul>
+            </div>
         </div>
+
+        <div class="cart-summary-section">
+            <div class="cart-summary-card">
+                <h3>Order Summary</h3>
+                
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="summary-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Discount</span>
+                    <span id="summary-discount" style="color:#28a745;">$0.00</span>
+                </div>
+
+                <div class="coupon-box">
+                    <input type="text" id="coupon-code" class="coupon-input" placeholder="Coupon Code">
+                    <button onclick="applyCoupon()" class="coupon-btn">Apply</button>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+
+                <button onclick="proceedToCheckout()" class="checkout-btn">Checkout Now</button>
+                <button onclick="clearCart()" class="empty-btn">Empty Cart</button>
+                
+                <div style="text-align:center; margin-top:15px;">
+                    <a href="index.html" style="text-decoration:none; color:#007bff; font-size:0.9em;">← Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
 
 <script src="js/script.js"></script>
 

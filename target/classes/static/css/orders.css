@@ -1,62 +1,151 @@
-/* Specific styles for Order History */
-.order-card {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    overflow: hidden;
+/* MAIN CONTAINER */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
+h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* GRID LAYOUT */
+#orders-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Wider cards */
+    gap: 30px;
+    padding-bottom: 50px;
+}
+
+/* MODERN CARD STYLE */
+.order-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Soft, deep shadow */
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.order-card:hover {
+    transform: translateY(-8px); /* Lifts up more */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* CARD HEADER (ID + Date) */
 .order-header {
-    background: #f8f9fa;
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
+    padding: 20px;
+    border-bottom: 1px dashed #e0e0e0; /* Receipt style dash */
+    background: #fafafa;
+}
+
+.order-id-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 5px;
 }
 
+.order-title {
+    font-size: 1.2em;
+    font-weight: 800;
+    color: #333;
+}
+
+.order-date {
+    font-size: 0.85em;
+    color: #888;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* STATUS BADGES (With Glow) */
 .order-status {
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 0.9em;
-    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Status Colors */
-.status-PENDING { background: #fff3cd; color: #856404; }
-.status-CONFIRMED { background: #cce5ff; color: #004085; }
-.status-SHIPPED { background: #d4edda; color: #155724; }
-.status-DELIVERED { background: #d4edda; color: #155724; }
+.status-PENDING { background: #fff8e1; color: #f39c12; border: 1px solid #ffe082; }
+.status-CONFIRMED { background: #e3f2fd; color: #007bff; border: 1px solid #90caf9; }
+.status-SHIPPED { background: #e0f2f1; color: #009688; border: 1px solid #80cbc4; }
+.status-DELIVERED { background: #e8f5e9; color: #28a745; border: 1px solid #a5d6a7; }
 
-.order-body { 
-    padding: 15px; 
+/* CARD BODY (Items) */
+.order-body {
+    padding: 20px;
+    flex-grow: 1;
 }
 
-.order-item-list { 
-    list-style: none; 
-    padding: 0; 
-    margin: 0; 
-}
-
-.order-item {
+.item-row {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f5f5f5;
 }
 
-.order-item:last-child { 
-    border-bottom: none; 
+.item-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.item-name {
+    font-weight: 600;
+    color: #444;
+}
+
+/* CARD FOOTER (Total Price - Dark Theme) */
+.order-footer {
+    background: #2c3e50; /* Dark footer */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.total-label {
+    font-size: 0.9em;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.total-amount {
+    font-size: 1.4em;
+    font-weight: 700;
 }
 
 .back-link { 
     display: inline-block; 
-    margin-bottom: 20px; 
-    color: #007bff; 
+    margin-bottom: 25px; 
+    color: #555; 
     text-decoration: none; 
+    font-weight: 600;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.2s;
 }
-
-.back-link:hover {
-    text-decoration: underline;
-}
+.back-link:hover { transform: translateX(-5px); color: #007bff; }

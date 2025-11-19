@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop - E-Commerce</title>
+    <title>MyShop - Premium Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <header class="header">
-        <a href="index.html" class="logo">MyShop</a>
+        <a href="index.html" class="logo">MyShop.</a>
         
         <div class="search-container">
-            <input type="text" id="search-input" class="search-input" placeholder="Search in MyShop...">
+            <input type="text" id="search-input" class="search-input" placeholder="Search for products...">
             <button id="search-button" class="search-button">Search</button>
         </div>
         
@@ -20,17 +21,21 @@
             </div>
     </header>
 
+    <section class="hero-section">
+        <h1>Welcome to the Future of Shopping</h1>
+        <p>Discover the best deals on Electronics, Fashion, and more.</p>
+    </section>
+
     <div class="main-content">
-        <aside class="sidebar card">
+        <aside class="sidebar">
             <h3>Categories</h3>
             <ul id="category-list">
                 <li onclick="filterProducts('all')" class="active">All Products</li>
-                <li style="text-align:center; color:#999; margin-top:10px;">Loading...</li>
-            </ul>
+                </ul>
         </aside>
 
         <section class="product-grid-container">
-            <h2>Available Products</h2>
+            <h2>Trending Now 🔥</h2>
             <div id="product-list" class="product-grid">
                 <p style="text-align:center; color:#666; width:100%;">Loading products...</p>
             </div>

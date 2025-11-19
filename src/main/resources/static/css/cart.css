@@ -1,0 +1,211 @@
+/* Page Layout */
+.cart-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 350px; /* List takes space, Summary is fixed width */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* --- LEFT COLUMN: CART ITEMS --- */
+.cart-list-section h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Individual Item Card */
+.cart-item {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid #f0f0f0;
+    transition: transform 0.2s;
+}
+
+.cart-item:hover {
+    transform: translateX(5px);
+    border-color: #e0e0e0;
+}
+
+.item-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain; /* Ensures image fits without stretching */
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 5px;
+}
+
+.item-details h4 { margin: 0; color: #333; font-size: 1.1rem; }
+.item-details small { color: #888; }
+
+/* Quantity Controls */
+.qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8f9fa;
+    padding: 5px;
+    border-radius: 30px;
+}
+
+.qty-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: background 0.2s;
+}
+.qty-btn:hover { background: #e2e6ea; }
+
+.item-price {
+    font-weight: 700;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    min-width: 80px;
+    text-align: right;
+}
+
+.btn-remove {
+    background: #ffebee;
+    color: #c62828;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: all 0.2s;
+}
+.btn-remove:hover { background: #ffcdd2; }
+
+
+/* --- RIGHT COLUMN: SUMMARY --- */
+.cart-summary-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    height: fit-content;
+    position: sticky;
+    top: 100px; /* Floats when scrolling */
+}
+
+.cart-summary-card h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    color: #333;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px dashed #eee;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #2c3e50;
+}
+
+/* Coupon Box */
+.coupon-box {
+    display: flex;
+    gap: 5px;
+    margin: 20px 0;
+}
+.coupon-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+.coupon-btn {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Checkout Buttons */
+.checkout-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+.checkout-btn:hover { transform: translateY(-2px); }
+
+.empty-btn {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #999;
+    color: #666;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.empty-btn:hover { background: #f0f0f0; }
+
+
+/* Empty State */
+.empty-cart-state {
+    text-align: center;
+    padding: 60px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    grid-column: 1 / -1; /* Span full width */
+}
+.empty-icon { font-size: 4rem; margin-bottom: 20px; display: block; }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .cart-wrapper { grid-template-columns: 1fr; }
+    .cart-summary-card { position: static; }
+}

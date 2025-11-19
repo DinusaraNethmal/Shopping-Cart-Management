@@ -16,7 +16,16 @@ public class OrderItem {
     @JsonIgnore
     private Order order;
 
+    // --- FIXING THE RELATIONSHIP HERE TOO ---
+    @ManyToOne
+    @JoinColumn(name = "product_id", insertable = false, updatable = false)
+    @JsonIgnore
+    private Product product;
+    // ----------------------------------------
+
+    @Column(name = "product_id")
     private Long productId;
+
     private String productName;
     private int quantity;
     private BigDecimal priceAtPurchase;
@@ -27,6 +36,9 @@ public class OrderItem {
 
     public Order getOrder() { return order; }
     public void setOrder(Order order) { this.order = order; }
+
+    public Product getProduct() { return product; }
+    public void setProduct(Product product) { this.product = product; }
 
     public Long getProductId() { return productId; }
     public void setProductId(Long productId) { this.productId = productId; }

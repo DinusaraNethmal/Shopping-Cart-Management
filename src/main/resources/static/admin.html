@@ -2,21 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard - Add Product</title>
-    <link rel="stylesheet" href="css/style.css"> <link rel="stylesheet" href="css/admin.css"> </head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
 <body>
 
-    <div class="dashboard-nav" style="margin-bottom: 20px; padding: 15px; background: #fff; border-bottom: 1px solid #ddd; display: flex;">
-        <a href="index.html" style="margin-right: 15px; text-decoration: none; color: #333;">← Back to Shop</a>
-        <a href="admin.html" style="margin-right: 15px; text-decoration: none; color: #007bff; font-weight: bold;">Manage Products</a>
-        <a href="admin-orders.html" style="text-decoration: none; color: #333;">Manage Orders</a>
-    </div>
-
 <div class="container">
-    <a href="index.html" class="back-link">← Back to Shop</a>
+    <div class="dashboard-nav">
+        <a href="index.html">← Back to Shop</a>
+        <a href="admin.html" class="active">Product Dashboard</a>
+        <a href="admin-orders.html">Order Management</a>
+    </div>
     
-    <div class="admin-container">
-        <h2 style="text-align:center;">Add New Product</h2>
+    <div class="admin-card">
+        <h2>Add New Product</h2>
+
+        <div class="category-adder">
+            <input type="text" id="new-cat-name" placeholder="Create a new category (e.g. Shoes)">
+            <button onclick="createCategory()" style="background:#007bff; color:white; border:none; padding:12px 20px; border-radius:6px; cursor:pointer; font-weight:bold;">Create</button>
+        </div>
         
         <form id="add-product-form" onsubmit="addProduct(event)">
             <div class="form-group">
@@ -25,22 +30,29 @@
             </div>
 
             <div class="form-group">
-                <label>Description</label>
-                <textarea id="p-desc" rows="3" placeholder="Product details..."></textarea>
+                <label>Category</label>
+                <select id="p-category">
+                    <option value="">Select a Category...</option>
+                </select>
             </div>
 
-            <div class="form-group" style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="p-desc" rows="2" placeholder="Product details..."></textarea>
+            </div>
+
+            <div class="grid-row">
                 <div>
                     <label>Price ($)</label>
                     <input type="number" id="p-price" step="0.01" required placeholder="0.00">
                 </div>
                 <div>
-                    <label>Stock Quantity</label>
+                    <label>Stock</label>
                     <input type="number" id="p-stock" required placeholder="100">
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="margin-top:15px;">
                 <label>SKU (Unique Code)</label>
                 <input type="text" id="p-sku" required placeholder="PROD-001">
             </div>
@@ -51,9 +63,17 @@
                 <img id="img-preview" class="preview-img" alt="Preview">
             </div>
 
-            <button type="submit" class="btn-submit">Add Product</button>
+            <button type="submit" class="btn-submit">Add to Store</button>
         </form>
     </div>
+
+    <div class="admin-card">
+        <h2>Live Store Inventory</h2>
+        <div id="inventory-list" class="inventory-list">
+            <p style="text-align:center; color:#666;">Loading products...</p>
+        </div>
+    </div>
+
 </div>
 
 <script src="js/admin.js"></script>

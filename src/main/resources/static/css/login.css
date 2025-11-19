@@ -1,53 +1,123 @@
-body { 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    background-color: #f4f4f4; 
-    margin: 0; 
-    padding: 0; 
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Creative Animated Gradient Background */
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
 }
 
-.auth-container { 
-    max-width: 400px; 
-    margin: 80px auto; 
-    background: white; 
-    padding: 30px; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-input { 
-    width: 100%; 
-    padding: 12px; 
-    margin: 10px 0; 
-    border: 1px solid #ddd; 
-    border-radius: 4px; 
-    box-sizing: border-box; 
+/* The Glass Card */
+.auth-container {
+    background: rgba(255, 255, 255, 0.9); /* Slight transparency */
+    backdrop-filter: blur(10px); /* Glass blur effect */
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
 }
 
-.btn-primary { 
-    width: 100%; 
-    padding: 12px; 
-    background: #007bff; 
-    color: white; 
-    border: none; 
-    border-radius: 4px; 
-    cursor: pointer; 
-    font-size: 16px; 
+.auth-container:hover {
+    transform: translateY(-5px); /* Subtle lift on hover */
+}
+
+/* Typography */
+h2 {
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    display: block;
+}
+
+/* Inputs */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+input:focus {
+    border-color: #e73c7e; /* Matches gradient pink */
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(231, 60, 126, 0.1);
+}
+
+/* Button */
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(to right, #ee7752, #e73c7e);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
     margin-top: 10px;
+    box-shadow: 0 5px 15px rgba(231, 60, 126, 0.3);
 }
 
 .btn-primary:hover {
-    background: #0056b3;
+    background: linear-gradient(to right, #e73c7e, #ee7752);
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(231, 60, 126, 0.4);
 }
 
-.switch-link { 
-    text-align: center; 
-    margin-top: 15px; 
-    font-size: 14px; 
-    color: #666;
+/* Links */
+.switch-link {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #555;
 }
 
-.switch-link a { 
-    color: #007bff; 
-    cursor: pointer; 
-    text-decoration: underline; 
+.switch-link a {
+    color: #e73c7e;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.switch-link a:hover {
+    color: #ee7752;
+    text-decoration: underline;
 }

@@ -1,7 +1,145 @@
-.admin-container { max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-.form-group { margin-bottom: 15px; }
-label { display: block; margin-bottom: 5px; font-weight: bold; }
-input, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-.btn-submit { width: 100%; padding: 12px; background: #28a745; color: white; border: none; cursor: pointer; font-size: 16px; border-radius: 4px; }
-.btn-submit:hover { background: #218838; }
-.preview-img { max-width: 100px; margin-top: 10px; display: none; border: 1px solid #ddd; }
+/* Centered Layout */
+.container {
+    max-width: 800px; /* Keeps it focused in the middle */
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+/* Common Card Style - Clean & Modern */
+.admin-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px; /* Softer corners */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Deep, soft shadow */
+    margin-bottom: 30px; /* Space between Form and List */
+    border: 1px solid #f0f0f0;
+}
+
+h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* --- FORM STYLING --- */
+.category-adder {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    align-items: center;
+}
+
+.form-group { margin-bottom: 20px; }
+label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; font-size: 0.95em; }
+
+input, textarea, select { 
+    width: 100%; 
+    padding: 14px; 
+    border: 2px solid #eee; 
+    border-radius: 8px; 
+    box-sizing: border-box; 
+    font-size: 1em;
+    transition: all 0.3s;
+    background: #fafafa;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #007bff;
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+}
+
+/* Two items on one line */
+.grid-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.btn-submit { 
+    width: 100%; 
+    padding: 16px; 
+    background: linear-gradient(135deg, #28a745, #218838); 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 1.1em; 
+    font-weight: bold;
+    border-radius: 8px; 
+    margin-top: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-submit:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3); 
+}
+
+.preview-img { 
+    width: 100%; 
+    height: 200px; 
+    object-fit: contain; 
+    border-radius: 8px; 
+    margin-top: 15px; 
+    background: #f9f9f9;
+    border: 2px dashed #ddd;
+    display: none; 
+}
+
+/* --- INVENTORY LIST STYLING --- */
+.inventory-list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.inventory-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    transition: background 0.2s;
+}
+.inventory-item:last-child { border-bottom: none; }
+.inventory-item:hover { background-color: #f8f9fa; }
+
+.item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.item-details { flex-grow: 1; }
+.item-name { font-weight: bold; color: #333; font-size: 1.1em; }
+.item-meta { font-size: 0.9em; color: #777; margin-top: 4px; display: block;}
+
+.btn-delete {
+    background-color: white;
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+.btn-delete:hover {
+    background-color: #dc3545;
+    color: white;
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+}
+
+/* Admin Navigation overrides */
+.dashboard-nav { margin-bottom: 30px; padding: 15px; background: #fff; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.dashboard-nav a { margin-right: 25px; color: #555; font-weight: 600; text-decoration: none; }
+.dashboard-nav a.active { color: #007bff; }
+.dashboard-nav a:hover { color: #007bff; }

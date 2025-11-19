@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/product-detail.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="index.html" class="logo">MyShop</a>
+        <div class="user-actions" id="nav-buttons"></div>
+    </header>
+
+    <div class="container">
+        <br>
+        <a href="index.html" style="text-decoration:none; color:#007bff; font-weight:bold;">← Back to Products</a>
+
+        <div id="loading-msg" style="text-align:center; margin-top:50px; color:#666;">Loading Product Details...</div>
+
+        <div class="detail-wrapper" id="product-content" style="display:none;">
+            <div class="detail-image-container">
+                <img id="p-img" src="" alt="Product" class="detail-image">
+            </div>
+
+            <div class="detail-info">
+                <h1 id="p-name">Product Name</h1>
+                
+                <div class="detail-meta">
+                    Category: <span id="p-category" style="color:#007bff;">General</span> | 
+                    SKU: <span id="p-sku">---</span>
+                </div>
+
+                <div class="detail-price">$<span id="p-price">0.00</span></div>
+                
+                <span id="p-stock-badge" class="detail-stock">Checking Stock...</span>
+
+                <div class="detail-description">
+                    <strong style="display:block; margin-bottom:5px;">Description:</strong>
+                    <span id="p-desc">No description available.</span>
+                </div>
+
+                <div class="action-area">
+                    <input type="number" id="p-qty" value="1" min="1" class="qty-input">
+                    <button class="buy-btn" onclick="addToCartFromDetail()" style="background-color:#28a745;">Add to Cart</button>
+                    <button class="buy-btn" onclick="buyNow()" style="background-color:#ff5722;">Buy Now</button>
+                </div>
+
+                <div class="extras">
+                    <p>✅ 14 days easy return</p>
+                    <p>🛡️ 1 Year Warranty</p>
+                    <p>🚚 Cash on Delivery Available</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
