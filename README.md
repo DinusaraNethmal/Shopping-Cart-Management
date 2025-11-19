@@ -1,4 +1,4 @@
-# E-Commerce Shopping Cart System
+# E-Commerce Shopping System
 
 ## 📖 Project Overview
 This project is a fully functional web-based shopping mall designed to facilitate e-commerce operations. It is built using **Java Spring Boot**, **MySQL**, and a dynamic **HTML/CSS/JavaScript** frontend.
